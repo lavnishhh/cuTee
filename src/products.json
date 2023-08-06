@@ -1,57 +1,212 @@
 {
-    "metadata":{
-        
-    },
-    "data":[
+    "metadata": {},
+    "data": [
         {
-            "id":1,
-            "name":"T-shirt",
-            "images":{
-                "pocket":"assets_temp/designs/pocket/tshirt-3-front.png",
-                "back":"assets_temp/designs/back/e1c2763d34185a7bee663ed2d7935a22-2-transformed.jpeg"
+            "id": 1,
+            "name": "Porsche",
+            "images": {
+                "back": "assets_temp/designs/front/D8_Front_2.png",
+                "pocket": "assets_temp/designs/pocket/D8_Front_1.png"
             },
-            "price":{
-                "front":300,
-                "back":300,
-                "pocket":100
+            "price": {
+                "front": 300,
+                "back": 300,
+                "pocket": 100
             },
-            "variants":{
-                "oversized_standard":{
-                    "base":250,
-                    "colors":["white", "black"],
-                    "sizes":["s", "m", "xl"]
+            "variants": {
+                "oversized_standard": {
+                    "base": 250,
+                    "colors": ["white", "beige"],
+                    "sizes": ["s", "m", "l", "xl"]
                 },
-                "tshirt":{
-                    "base":150,
-                    "colors":["red"],
-                    "sizes":["s", "l", "xl"]
+                "tshirt": {
+                    "base": 150,
+                    "colors": [ "white", "beige"],
+                    "sizes": ["s", "l", "xl"]
                 }
             },
-            "tags":["pop"]
+            "tags": ["merch"]
         },
         {
-            "id":2,
-            "name":"T-shirt",
-            "images":{
-                "front":"assets_temp/designs/pocket/metallica-front.png"
+            "id": 2,
+            "name": "Consciousness",
+            "images": {
+                "back": "assets_temp/designs/back/D2_Back.png",
+                "front": "assets_temp/designs/pocket/D2_Front.png"
             },
-            "price":{
-                "base":300,
-                "front":300,
-                "back":300,
-                "pocket":100
+            "price": {
+                "front": 300,
+                "back": 300,
+                "pocket": 100
             },
-            "variants":{
-                "oversized_standard":{
-                    "colors":["red", "white"],
-                    "sizes":["s", "m", "l", "xl"]
+            "variants": {
+                "oversized_standard": {
+                    "base": 250,
+                    "colors": ["black"],
+                    "sizes": ["s", "m", "l", "xl"]
                 },
-                "tshirt":{
-                    "colors":["red"],
-                    "sizes":["s", "m", "l", "xl"]
+                "tshirt": {
+                    "base": 150,
+                    "colors": ["black"],
+                    "sizes": ["s", "m", "l", "xl"]
                 }
             },
-            "tags":["pop"]
+            "tags":["minimal"]
+        },
+        {
+            "id": 3,
+            "name": "Absent Presence",
+            "images": {
+                "back": "assets_temp/designs/back/D4_Back.png",
+                "front": "assets_temp/designs/pocket/D4_Front.png"
+            },
+            "price": {
+                "front": 300,
+                "back": 300,
+                "pocket": 100
+            },
+            "variants": {
+                "oversized_standard": {
+                    "base": 250,
+                    "colors": ["white"],
+                    "sizes": ["s", "m", "l", "xl"]
+                },
+                "tshirt": {
+                    "base": 150,
+                    "colors": ["white"],
+                    "sizes": ["s", "m", "l", "xl"]
+                }
+            },
+            "tags":["minimal"]
+        },
+        {
+            "id": 4,
+            "name": "Karma",
+            "images": {
+                "back": "assets_temp/designs/back/D3_Back.png",
+                "front": "assets_temp/designs/pocket/D3_Front.png"
+            },
+            "price": {
+                "front": 300,
+                "back": 300,
+                "pocket": 100
+            },
+            "variants": {
+                "oversized_standard": {
+                    "base": 250,
+                    "colors": ["black", "white"],
+                    "sizes": ["s", "m", "l", "xl"]
+                },
+                "tshirt": {
+                    "base": 150,
+                    "colors": ["black", "white"],
+                    "sizes": ["s", "m", "l", "xl"]
+                }
+            },
+            "tags": ["minimal"]
+        },
+        {
+            "id": 5,
+            "name": "Human Being",
+            "images": {
+                "back": "assets_temp/designs/back/D5_Back.png"
+            },
+            "price": {
+                "front": 300,
+                "back": 300,
+                "pocket": 100
+            },
+            "variants": {
+                "oversized_standard": {
+                    "base": 250,
+                    "colors": ["black"],
+                    "sizes": ["s", "m", "l", "xl"]
+                },
+                "tshirt": {
+                    "base": 150,
+                    "colors": ["black"],
+                    "sizes": ["s", "m", "l", "xl"]
+                }
+            },
+            "tags": ["street"]
+        },
+        {
+            "id": 6,
+            "name": "Angels",
+            "images": {
+                "pocket": "assets_temp/designs/pocket/D6_Front.png",
+                "back": "assets_temp/designs/back/D6_Back.jpeg"
+            },
+            "price": {
+                "front": 300,
+                "back": 300,
+                "pocket": 100
+            },
+            "variants": {
+                "oversized_standard": {
+                    "base": 250,
+                    "colors": ["black", "white"],
+                    "sizes": ["s", "m", "l", "xl"]
+                },
+                "tshirt": {
+                    "base": 150,
+                    "colors": ["black", "white"],
+                    "sizes": ["s", "m", "l", "xl"]
+                }
+            },
+            "tags": ["street"]
+        },
+        {
+            "id": 7,
+            "name": "Broken Hearts",
+            "images": {
+                "front": "assets_temp/designs/pocket/D9_Front.png",
+                "back" : "assets_temp/designs/back/D9_Back.png"
+            },
+            "price": {
+                "front": 300,
+                "back": 300,
+                "pocket": 100
+            },
+            "variants": {
+                "oversized_standard": {
+                    "base": 250,
+                    "colors": ["black", "white"],
+                    "sizes": ["s", "m", "l", "xl"]
+                },
+                "tshirt": {
+                    "base": 150,
+                    "colors": ["black", "white"],
+                    "sizes": ["s", "m", "l", "xl"]
+                }
+            },
+            "tags": ["street"]
+        },
+        {
+            "id": 8,
+            "name": "Love Death Robots",
+            "images": {
+                "pocket": "assets_temp/designs/pocket/D10_Front.png",
+                "back" : "assets_temp/designs/back/D10_Back.png"
+            },
+            "price": {
+                "front": 300,
+                "back": 300,
+                "pocket": 100
+            },
+            "variants": {
+                "oversized_standard": {
+                    "base": 250,
+                    "colors": ["black"],
+                    "sizes": ["s", "m", "l", "xl"]
+                },
+                "tshirt": {
+                    "base": 150,
+                    "colors": ["black"],
+                    "sizes": ["s", "m", "l", "xl"]
+                }
+            },
+            "tags": ["street"]
         }
     ]
 }

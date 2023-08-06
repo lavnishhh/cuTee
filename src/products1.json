@@ -1,0 +1,59 @@
+{
+    "metadata":{
+        
+    },
+    "data":[
+        {
+            "id":0,
+            "name":"T-shirt",
+            "images":{
+                "pocket":"assets_temp/designs/pocket/tshirt-3-front.png",
+                "back":"assets_temp/designs/back/e1c2763d34185a7bee663ed2d7935a22-2-transformed.jpeg"
+            },
+            "price":{
+                "base":300,
+                "front":300,
+                "back":300,
+                "pocket":100
+            },
+            "variants":{
+                "oversized_standard":{
+                    "base":250,
+                    "colors":["white", "black"],
+                    "sizes":["s", "m", "xl"]
+                },
+                "tshirt":{
+                    "base":150,
+                    "colors":["white"],
+                    "sizes":["s", "l", "xl"]
+                }
+            },
+            "tags":["pop"]
+        },
+        {
+            "id":1,
+            "name":"T-shirt 2",
+            "images":{
+                "back":"assets_temp/designs/back/tshirt-5-back.png"
+            },
+            "price":{
+                "front":300,
+                "back":300,
+                "pocket":100
+            },
+            "variants":{
+                "oversized_standard":{
+                    "base":250,
+                    "colors":["black", "beige"],
+                    "sizes":["s", "m", "l", "xl"]
+                },
+                "tshirt":{
+                    "base":150,
+                    "colors":["black", "beige"],
+                    "sizes":["s", "m", "l", "xl"]
+                }
+            },
+            "tags":["pop"]
+        }
+    ]
+}

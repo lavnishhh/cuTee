@@ -1,40 +1,27 @@
-const color_tshirt = {
-    "oversized_standard": {
-        "name": "Oversized",
-        "colors": {
-            "white": {
-                "front": "assets_temp/tshirts/mockup-front-white.png",
-                "back": "assets_temp/tshirts/mockup-back-white.png"
-            },
-            "black": {
-                "front": "assets_temp/tshirts/mockup-front-black.png",
-                "back": "assets_temp/tshirts/mockup-back-black.png"
-            },
-        }
-    },
-    "tshirt": {
-        "name": "T-shirt"
-    }
-}
-
-const color_map = {
-    "white": "#fff",
-    "black": "#000"
-}
-
 sizes = ['s', 'm', 'l', 'xl']
 
-let product_preview;
+let product_preview_front;
+let product_preview_back;
 
 async function fetchProduct(id) {
     const response = await fetch("./products.json");
-    await response.json().then((movies) => {
-        console.log(movies)
-        const product_data = movies.data[id]
+    await response.json().then((response) => {
+
+        let product_data;
+
+        response.data.forEach((product)=>{
+            if(product.id == id){
+                product_data = product
+                return
+            }
+        })
 
         document.querySelector('#product-name').textContent = product_data.name
-        document.querySelector('#product-image-holder').innerHTML = `<canvas id="product-canvas" class="w-full" width="1000px" height="1000px"></canvas>`
-        document.querySelector('#product-canvas').style.height = `${document.querySelector('#product-image-holder').getBoundingClientRect().width}px`
+        
+        document.querySelector('#product-image-holder').replaceChildren()
+        document.querySelector('#product-image-holder').appendChild(createElement(`<div class="w-full flex-none align-middle snap-center"><canvas id="product-canvas-front" class="w-full aspect-1" width="1000px" height="1000px"></canvas></div>`))
+        document.querySelector('#product-image-holder').appendChild(createElement(`<div class="w-full flex-none align-middle snap-center"><canvas id="product-canvas-back" class="w-full aspect-1" width="1000px" height="1000px"></canvas></div>`))
+        // document.querySelector('#product-canvas-front').style.height = `${document.querySelector('#product-image-holder').getBoundingClientRect().width}px`
 
         const variants = product_data.variants
 
@@ -65,9 +52,10 @@ async function fetchProduct(id) {
             // check first variant
             if (index == 0) {
 
-                product_preview = new ProductPreview('product-canvas')
+                product_preview_front = new ProductPreview('product-canvas-front')
+                product_preview_back = new ProductPreview('product-canvas-back')
 
-                setProduct(product_type, variant)
+                setProduct(product_type, product_data)
                 document.querySelector(`#${product_type}-select`).checked = true
 
                 variant.colors.forEach(color => {
@@ -88,10 +76,7 @@ async function fetchProduct(id) {
 
                     document.querySelector(`#color-choice-${color}-label`).addEventListener('change', (e) => {
                         if (e.currentTarget.checked) {
-                            product_preview.clear()
-                            product_preview.setBackground(color_tshirt[product_type].colors[e.currentTarget.value].front).then(()=>{
-                                product_preview.paint('assets_temp/designs/back/tshirt-5-back.png', ['center'], 0.07)
-                            })
+                            paintProduct(product_type, product_data, color)
                         }
                     })
 
@@ -105,17 +90,32 @@ async function fetchProduct(id) {
 
 
     });
+}
 
+function paintProduct(product_type, product, color){
+    product_preview_front.clear()
+    product_preview_back.clear()
+    
+    product_preview_front.setBackground(color_tshirt[product_type].colors[color].front).then(()=>{
+        if(product.images.front){
+            product_preview_front.paint(product.images.front, ['center'], 'auto')
+        }
+        if(product.images.pocket){
+            product_preview_front.paint(product.images.pocket, ["pocket"], 'auto')
+        }
+    })
 
+    product_preview_back.setBackground(color_tshirt[product_type].colors[color].back).then(()=>{
+        if(product.images.back){
+            product_preview_back.paint(product.images.back, ['center'], 'auto')
+        }
+    })
 }
 
 //TODO: implement custom print selection
 function setProduct(product_type, product) {
 
-    product_preview.setBackground(color_tshirt[product_type].colors[product.colors[0]].front).then(()=>{
-        product_preview.paint('assets_temp/designs/back/tshirt-5-back.png', ['center'], 0.07)
-    })
-
+    paintProduct(product_type, product, product.variants[product_type].colors[0])
 
     // set size options
     document.querySelector('#size-select').replaceChildren()
@@ -124,13 +124,13 @@ function setProduct(product_type, product) {
         document.querySelector('#size-select').insertAdjacentHTML('beforeend',
             `
                 <label
-                    class="group relative flex items-center justify-center rounded-lg border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 ${product.sizes.includes(size) ? 'cursor-pointer bg-white text-gray-900 shadow-sm' : 'cursor-not-allowed bg-gray-50 text-gray-200'}">
+                    class="group relative flex items-center justify-center rounded-lg border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 ${product.variants[product_type].sizes.includes(size) ? 'cursor-pointer bg-white text-gray-900 shadow-sm' : 'cursor-not-allowed bg-gray-50 text-gray-200'}">
                     <span id="size-choice-${size}-label">${size.toUpperCase()}</span>
-                    <input ${product.sizes.includes(size) ? '' : 'disabled'} type="radio" name="size-choice" value="${size}" class="peer sr-only"
+                    <input ${product.variants[product_type].sizes.includes(size) ? '' : 'disabled'} type="radio" name="size-choice" value="${size}" class="peer sr-only"
                         aria-labelledby="size-choice-${size}-label" id="size-choice-${size}-input">
                     <span
                         class="peer-checked:border-2 peer-checked:border-green-500 border-2 border-gray-200 pointer-events-none absolute -inset-px rounded-lg"
-                        aria-hidden="true">${product.sizes.includes(size) ?
+                        aria-hidden="true">${product.variants[product_type].sizes.includes(size) ?
                 ''
                 :
                 `
@@ -148,7 +148,7 @@ function setProduct(product_type, product) {
 
     })
 
-    document.querySelector(`#size-choice-${product.sizes[0]}-input`).checked = true
+    document.querySelector(`#size-choice-${product.variants[product_type].sizes[0]}-input`).checked = true
 }
 
 class ProductPreview {
@@ -195,20 +195,60 @@ class ProductPreview {
         }
 
         if (design.complete) {
+            // if image is to be expanded
+            if (ratio == 'auto') {
+                let dw = this.canvas.width
+                let dh = this.canvas.height
+                if (x == 'pocket') {
+                    dw = 300
+                    dh = 300
+                }
+                const h_ratio = dw / design.width;
+                const v_ratio = dh / design.height;
+                ratio = Math.min(h_ratio, v_ratio)*0.5;
+            }
+
+            //center image
             if (x == 'center') {
                 x = (this.canvas.width - design.width * ratio) / 2,
                     y = (this.canvas.height - design.height * ratio) / 2
             }
+            if(x == 'pocket'){
+                x = 600
+                y = 300
+            }
             this.ctx.drawImage(design, 0, 0, design.width, design.height,
                 x, y, design.width * ratio, design.height * ratio);
+
+
         } else {
             design.onload = () => {
+
+                // if image is to be expanded
+                if (ratio == 'auto') {
+                    let dw = this.canvas.width
+                    let dh = this.canvas.height
+                    if (x == 'pocket') {
+                        dw = 300
+                        dh = 300
+                    }
+                    const h_ratio = dw / design.width;
+                    const v_ratio = dh / design.height;
+                    ratio = Math.min(h_ratio, v_ratio)*0.5;
+                }
+
+                //center image
                 if (x == 'center') {
                     x = (this.canvas.width - design.width * ratio) / 2,
                         y = (this.canvas.height - design.height * ratio) / 2
                 }
+                if(x == 'pocket'){
+                    x = 600
+                    y = 300
+                }
                 this.ctx.drawImage(design, 0, 0, design.width, design.height,
                     x, y, design.width * ratio, design.height * ratio);
+
             }
         }
 
