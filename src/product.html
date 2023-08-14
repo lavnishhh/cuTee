@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="./main.css" rel="stylesheet">
-    <script src="./utilities.js"></script>
+    <script src="./scripts/utilities.js"></script>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 
                     <!-- cart -->
                     <button type="button"
-                        class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 lg:mr-0 ">
+                        class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 lg:mr-0 ">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -43,10 +43,10 @@
                 <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
                     <!-- <ul class="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-white">
             <li>
-              <a href="#" class="block py-2 pl-3 pr-4 text-white bg-green-700 rounded lg:bg-transparent lg:text-green-700 lg:p-0" aria-current="page">Oversized</a>
+              <a href="#" class="block py-2 pl-3 pr-4 text-white bg-gray-700 rounded lg:bg-transparent lg:text-gray-700 lg:p-0" aria-current="page">Oversized</a>
             </li>
             <li>
-              <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-green-700 lg:p-0">Tshirts</a>
+              <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-gray-700 lg:p-0">Tshirts</a>
             </li>
           </ul> -->
                 </div>
@@ -93,8 +93,8 @@
 
                     <!-- Name, Count -->
                     <div class="flex flex-row justify-between mt-2">
-                        <h1 class="text-3xl font-semibold">$499</h1>
-                        <div class="flex flex-col focus:border-green-400">
+                        <h1 id="product-price"  class="text-3xl font-semibold">$499</h1>
+                        <div class="flex flex-col focus:border-gray-400">
                             <label for="underline_select" class="sr-only">Underline select</label>
                             <select id="underline_select"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
@@ -112,13 +112,13 @@
                     <div class="mt-4">
                         <div class="flex items-center justify-between">
                             <h3 class="text-sm font-medium text-gray-900">Size</h3>
-                            <a href="#" class="text-sm font-medium text-green-600 hover:text-green-500">Size guide</a>
+                            <a href="#" class="text-sm font-medium text-gray-600 hover:text-gray-500">Size guide</a>
                         </div>
                         <div>
                             <fieldset class="mt-2">
                                 <legend class="sr-only">Choose a size</legend>
-                                <div id="size-select" class="grid grid-cols-4 gap-4">
-                                    <!-- Active: "ring-2 ring-green-500" -->
+                                <div id="product-sizes-select" class="grid grid-cols-4 gap-4">
+                                    <!-- Active: "ring-2 ring-gray-500" -->
                                     <label
                                         class="group relative flex items-center justify-center rounded-lg border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-not-allowed bg-gray-50 text-gray-200">
                                         <input type="radio" name="size-choice" value="S" disabled class="sr-only"
@@ -133,34 +133,34 @@
                                             </svg>
                                         </span>
                                     </label>
-                                    <!-- Active: "ring-2 ring-green-500" -->
+                                    <!-- Active: "ring-2 ring-gray-500" -->
                                     <label
                                         class="group relative flex items-center justify-center rounded-lg border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
                                         <span id="size-choice-2-label">S</span>
                                         <input type="radio" name="size-choice" value="S" class="peer sr-only"
                                             aria-labelledby="size-choice-2-label">
                                         <span
-                                            class="peer-checked:border-2 peer-checked:border-green-500  pointer-events-none absolute -inset-px rounded-lg"
+                                            class="peer-checked:border-2 peer-checked:border-gray-500  pointer-events-none absolute -inset-px rounded-lg"
                                             aria-hidden="true"></span>
                                     </label>
-                                    <!-- Active: "ring-2 ring-green-500" -->
+                                    <!-- Active: "ring-2 ring-gray-500" -->
                                     <label
                                         class="group relative flex items-center justify-center rounded-lg border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
                                         <span id="size-choice-3-label">M</span>
                                         <input type="radio" name="size-choice" value="M" class="peer sr-only"
                                             aria-labelledby="size-choice-3-label">
                                         <span
-                                            class="peer-checked:border-2 peer-checked:border-green-500 pointer-events-none absolute -inset-px rounded-lg"
+                                            class="peer-checked:border-2 peer-checked:border-gray-500 pointer-events-none absolute -inset-px rounded-lg"
                                             aria-hidden="true"></span>
                                     </label>
-                                    <!-- Active: "ring-2 ring-green-500" -->
+                                    <!-- Active: "ring-2 ring-gray-500" -->
                                     <label
                                         class="group relative flex items-center justify-center rounded-lg border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
                                         <span id="size-choice-4-label">L</span>
                                         <input type="radio" name="size-choice" value="L" class="sr-only peer"
                                             aria-labelledby="size-choice-4-label">
                                         <span
-                                            class="peer-checked:border-2 peer-checked:border-green-500 pointer-events-none absolute -inset-px rounded-lg"
+                                            class="peer-checked:border-2 peer-checked:border-gray-500 pointer-events-none absolute -inset-px rounded-lg"
                                             aria-hidden="true"></span>
                                     </label>
                                 </div>
@@ -173,7 +173,7 @@
                     <div class="mt-4">
                         <div class="flex items-center justify-between">
                             <h3 class="text-sm font-medium text-gray-900">Shirt type</h3>
-                            <a href="#" class="text-sm font-medium text-green-600 hover:text-green-500">Shirt
+                            <a href="#" class="text-sm font-medium text-gray-600 hover:text-gray-500">Shirt
                                 guide</a>
                         </div>
                         <div>
@@ -186,12 +186,12 @@
                                         <span id="shirt-choice-1-label">T-shirt</span>
                                         <!--
                                             Active: "border", Not Active: "border-2"
-                                            Checked: "border-green-500", Not Checked: "border-transparent"
+                                            Checked: "border-gray-500", Not Checked: "border-transparent"
                                         -->
                                         <input type="radio" name="shirt-choice" value="t-shirt" class="peer sr-only"
                                             id="t-shirt" checked>
                                         <span
-                                            class="pointer-events-none absolute -inset-px rounded-lg peer-checked:border-2 peer-checked:border-green-500"
+                                            class="pointer-events-none absolute -inset-px rounded-lg peer-checked:border-2 peer-checked:border-gray-500"
                                             aria-hidden="true"></span>
 
                                     </label>
@@ -202,12 +202,12 @@
                                         <span id="shirt-choice-2-label">Oversized</span>
                                         <!--
                                             Active: "border", Not Active: "border-2"
-                                            Checked: "border-green-500", Not Checked: "border-transparent"
+                                            Checked: "border-gray-500", Not Checked: "border-transparent"
                                         -->
                                         <input type="radio" name="shirt-choice" value="oversized-shirt"
                                             class="peer sr-only" id="o-t-shirt">
                                         <span
-                                            class="pointer-events-none absolute -inset-px rounded-lg peer-checked:border-2 peer-checked:border-green-500"
+                                            class="pointer-events-none absolute -inset-px rounded-lg peer-checked:border-2 peer-checked:border-gray-500"
                                             aria-hidden="true"></span>
 
                                     </label>
@@ -224,14 +224,14 @@
 
                 <!-- checkout -->
                 <div class="flex flex-row space-x-3 [&>*]:flex-grow lg:border-none border-gray-200 pt-4 px-3">
-                    <button
-                        class="group relative flex items-center justify-center rounded-lg py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer border-green-500 border-2 bg-white text-gray-900 shadow-sm ">
+                    <button id="product-cart"
+                        class="group relative flex items-center justify-center rounded-lg py-3 px-4 text-sm font-medium uppercase hover:bg-gray-100 focus:outline-none sm:flex-1 sm:py-6 border-gray-500 border-2 bg-gray-50 text-gray-900 shadow-sm ">
                         <span class="">
                             Add to cart
                         </span>
                     </button>
-                    <button type="button"
-                        class="group relative flex items-center justify-center rounded-lg py-3 px-4 text-sm font-medium uppercase hover:bg-green-600 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer border-green-500 border-2 bg-green-500 text-gray-50 shadow-sm ">Buy
+                    <button type="button" id="product-buy"
+                        class="group relative flex items-center justify-center rounded-lg py-3 px-4 text-sm font-medium uppercase hover:bg-gray-600 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer border-gray-900 border-2 bg-gray-900 text-gray-50 shadow-sm ">Buy
                         :)</button>
 
                 </div>
@@ -243,7 +243,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
-    <script src="./product.js"></script>
+    <script src="./scripts/product.js"></script>
 </body>
 
 </html>

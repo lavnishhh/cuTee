@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link href="./main.css" rel="stylesheet">
-  <script src="./utilities.js"></script>
+  <script src="./scripts/utilities.js"></script>
 </head>
 
 <body class=" overflow-hidden">
@@ -22,7 +22,7 @@
 
           <!-- cart -->
           <button type="button"
-            class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 ">
+            class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 ">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -43,42 +43,42 @@
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
           <!-- <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
 <li>
-  <a href="#" class="block py-2 pl-3 pr-4 text-white bg-green-700 rounded md:bg-transparent md:text-green-700 md:p-0" aria-current="page">Oversized</a>
+  <a href="#" class="block py-2 pl-3 pr-4 text-white bg-gray-700 rounded md:bg-transparent md:text-gray-700 md:p-0" aria-current="page">Oversized</a>
 </li>
 <li>
-  <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-700 md:p-0">Tshirts</a>
+  <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-700 md:p-0">Tshirts</a>
 </li>
 </ul> -->
         </div>
       </div>
       <div id="genre-select" class="flex justify-center p-2 border-y border-gray-200 dark:border-gray-600">
         <div>
-          <input type="radio" id="genre-all" name="product-genre" value="" class="hidden peer" required checked>
-          <label for="genre-all" class="text-gray-900 peer-checked:text-green-500 hover:text-green-800">
+          <label for="genre-all" class="text-gray-500 peer-checked:text-gray-900 hover:text-gray-800">
+            <input type="radio" id="genre-all" name="product-genre" value="" class="hidden peer" required checked>
             <div class="block py-2 pl-3 pr-4 mt-0">
               <div class="w-full">All</div>
             </div>
           </label>
         </div>
         <div>
-          <input type="radio" id="genre-anime" name="product-genre" value="anime" class="hidden peer" required>
-          <label for="genre-anime" class="text-gray-900 peer-checked:text-green-500 hover:text-green-800">
+          <label for="genre-anime" class="text-gray-500 peer-checked:text-gray-900 hover:text-gray-800">
+            <input type="radio" id="genre-anime" name="product-genre" value="anime" class="hidden peer" required>
             <div class="block py-2 pl-3 pr-4 mt-0">
               <div class="w-full">Anime</div>
             </div>
           </label>
         </div>
         <div>
-          <input type="radio" id="genre-minim" name="product-genre" value="minimal" class="hidden peer" required>
-          <label for="genre-minim" class="text-gray-900 peer-checked:text-green-500 hover:text-green-800">
+          <label for="genre-minim" class="text-gray-500 peer-checked:text-gray-900 hover:text-gray-800">
+            <input type="radio" id="genre-minim" name="product-genre" value="minimal" class="hidden peer" required>
             <div class="block py-2 pl-3 pr-4 mt-0">
               <div class="w-full">Minimal</div>
             </div>
           </label>
         </div>
         <div>
-          <input type="radio" id="genre-street" name="product-genre" value="street" class="hidden peer" required>
-          <label for="genre-street" class="text-gray-900 peer-checked:text-green-500 hover:text-green-800">
+          <label for="genre-street" class="text-gray-500 peer-checked:text-gray-900 hover:text-gray-800">
+            <input type="radio" id="genre-street" name="product-genre" value="street" class="hidden peer" required>
             <div class="block py-2 pl-3 pr-4 mt-0">
               <div class="w-full">Street</div>
             </div>
@@ -89,7 +89,7 @@
         <div>
           <input type="radio" id="color-all" name="product-color" value="" class="hidden peer" required>
           <label for="color-all"
-            class="flex items-center justify-center text-lg m-2 peer-checked:ring-green-500 w-5 h-5 rounded-full ring-2 ring-gray-500 hover:ring-black">
+            class="flex items-center justify-center text-lg m-2 peer-checked:ring-black w-5 h-5 rounded-full ring-2 ring-gray-500 hover:ring-gray-800">
             <span>✦</span>
           </label>
         </div>
@@ -98,10 +98,10 @@
     </nav>
 
     <div class="overflow-y-scroll">
-      <div class="mx-auto max-w-2xl md:px-4 py-3 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div class="ps-1 mx-auto max-w-2xl md:px-4 py-3 sm:px-6 lg:max-w-7xl lg:px-8">
 
         <div id="product-list"
-          class="mt-6 grid grid-cols-2 md:gap-x-6 md:gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          class="mt-6 grid grid-cols-2 gap-x-6 md:gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 
 
           <!-- More products... -->
@@ -113,7 +113,7 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
-  <script src="./shop.js"></script>
+  <script src="./scripts/shop.js"></script>
 
 </body>
 

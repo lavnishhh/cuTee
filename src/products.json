@@ -19,7 +19,7 @@
                     "colors": ["white", "beige"],
                     "sizes": ["s", "m", "l", "xl"]
                 },
-                "tshirt": {
+                "t-shirt": {
                     "base": 150,
                     "colors": [ "white", "beige"],
                     "sizes": ["s", "l", "xl"]
@@ -45,7 +45,7 @@
                     "colors": ["black"],
                     "sizes": ["s", "m", "l", "xl"]
                 },
-                "tshirt": {
+                "t-shirt": {
                     "base": 150,
                     "colors": ["black"],
                     "sizes": ["s", "m", "l", "xl"]
@@ -71,7 +71,7 @@
                     "colors": ["white"],
                     "sizes": ["s", "m", "l", "xl"]
                 },
-                "tshirt": {
+                "t-shirt": {
                     "base": 150,
                     "colors": ["white"],
                     "sizes": ["s", "m", "l", "xl"]
@@ -97,7 +97,7 @@
                     "colors": ["black", "white"],
                     "sizes": ["s", "m", "l", "xl"]
                 },
-                "tshirt": {
+                "t-shirt": {
                     "base": 150,
                     "colors": ["black", "white"],
                     "sizes": ["s", "m", "l", "xl"]
@@ -122,7 +122,7 @@
                     "colors": ["black"],
                     "sizes": ["s", "m", "l", "xl"]
                 },
-                "tshirt": {
+                "t-shirt": {
                     "base": 150,
                     "colors": ["black"],
                     "sizes": ["s", "m", "l", "xl"]
@@ -148,7 +148,7 @@
                     "colors": ["black", "white"],
                     "sizes": ["s", "m", "l", "xl"]
                 },
-                "tshirt": {
+                "t-shirt": {
                     "base": 150,
                     "colors": ["black", "white"],
                     "sizes": ["s", "m", "l", "xl"]
@@ -174,7 +174,7 @@
                     "colors": ["black", "white"],
                     "sizes": ["s", "m", "l", "xl"]
                 },
-                "tshirt": {
+                "t-shirt": {
                     "base": 150,
                     "colors": ["black", "white"],
                     "sizes": ["s", "m", "l", "xl"]
@@ -200,7 +200,7 @@
                     "colors": ["black"],
                     "sizes": ["s", "m", "l", "xl"]
                 },
-                "tshirt": {
+                "t-shirt": {
                     "base": 150,
                     "colors": ["black"],
                     "sizes": ["s", "m", "l", "xl"]

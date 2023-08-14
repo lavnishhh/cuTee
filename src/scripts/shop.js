@@ -30,7 +30,7 @@ async function fetchProduct() {
                 createElement(`
                     <div>
                         <input type="radio" id="color-${color}" name="product-color" value="${color}" class="hidden peer" required>
-                        <label for="color-${color}"  style="background-color:${hex}" class="block m-2 peer-checked:ring-green-500 w-5 h-5 rounded-full ring-2 ring-gray-500 hover:ring-black">                           
+                        <label for="color-${color}"  style="background-color:${hex}" class="block m-2 peer-checked:ring-black w-5 h-5 rounded-full ring-2 ring-gray-500 hover:ring-gray-800">                           
                         </label>
                     </div>`))
         })

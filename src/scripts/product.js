@@ -3,21 +3,26 @@ sizes = ['s', 'm', 'l', 'xl']
 let product_preview_front;
 let product_preview_back;
 
+
 async function fetchProduct(id) {
     const response = await fetch("./products.json");
     await response.json().then((response) => {
 
+        let storage = LocalStorage.getStorage()
+
+
         let product_data;
 
-        response.data.forEach((product)=>{
-            if(product.id == id){
+        response.data.forEach((product) => {
+            if (product.id == id) {
                 product_data = product
                 return
             }
         })
 
+
         document.querySelector('#product-name').textContent = product_data.name
-        
+
         document.querySelector('#product-image-holder').replaceChildren()
         document.querySelector('#product-image-holder').appendChild(createElement(`<div class="w-full flex-none align-middle snap-center"><canvas id="product-canvas-front" class="w-full aspect-1" width="1000px" height="1000px"></canvas></div>`))
         document.querySelector('#product-image-holder').appendChild(createElement(`<div class="w-full flex-none align-middle snap-center"><canvas id="product-canvas-back" class="w-full aspect-1" width="1000px" height="1000px"></canvas></div>`))
@@ -37,12 +42,12 @@ async function fetchProduct(id) {
                     <span id="${product_type}-select-label">${color_tshirt[product_type].name}</span>
                     <!--
                         Active: "border", Not Active: "border-2"
-                        Checked: "border-green-500", Not Checked: "border-transparent"
+                        Checked: "border-gray-500", Not Checked: "border-transparent"
                     -->
                     <input type="radio" name="shirt-choice" value="${product_type}" class="peer sr-only"
                         id="${product_type}-select">
                     <span
-                        class="pointer-events-none absolute -inset-px rounded-lg peer-checked:border-2 peer-checked:border-green-500"
+                        class="pointer-events-none absolute -inset-px rounded-lg peer-checked:border-2 peer-checked:border-gray-500"
                         aria-hidden="true"></span>
 
                 </label>
@@ -55,7 +60,6 @@ async function fetchProduct(id) {
                 product_preview_front = new ProductPreview('product-canvas-front')
                 product_preview_back = new ProductPreview('product-canvas-back')
 
-                setProduct(product_type, product_data)
                 document.querySelector(`#${product_type}-select`).checked = true
 
                 variant.colors.forEach(color => {
@@ -67,7 +71,7 @@ async function fetchProduct(id) {
                             <input type="radio" name="color-choice" value="${color}" class="peer sr-only"
                                 id="color-choice-${color}-label">
                             <span
-                                class="ring-offset-2 peer-checked:ring-2 ring-green-500 h-8 w-8 rounded-full border border-black border-opacity-10"
+                                class="ring-offset-2 peer-checked:ring-2 ring-gray-500 h-8 w-8 rounded-full border border-black border-opacity-10"
                                 style="background-color:${color_map[color]}"
                                 aria-hidden="true"></span>
                         </label>
@@ -80,6 +84,9 @@ async function fetchProduct(id) {
                         }
                     })
 
+                    setProduct(product_type, product_data)
+
+
                 })
 
                 // check first color
@@ -88,25 +95,54 @@ async function fetchProduct(id) {
             }
         });
 
+        document.querySelector('#product-buy').addEventListener('click', () => {
+            const product_type = document.querySelector('#product-type-select input:checked').value
+            const size = document.querySelector('#product-sizes-select input:checked').value
+            buy({
+                "user": {
+                    "name": "",
+                    "email": "",
+                    "phone": "",
+                    "address": ""
+                },
+                "products": [
+                    {
+                        "id": id,
+                        "size": size,
+                        "type": product_type,
+                        "data": product_data,
+                    }
+                ]
+            })
+        })
+
+        document.querySelector('#product-cart').addEventListener('click', () => {
+            storage = LocalStorage.getStorage()
+            added_product = product_data
+            product_data.size = document.querySelector('#product-sizes-select input:checked').value
+            product_data.variant = document.querySelector('#product-type-select input:checked').value
+            storage.cart[product_data.id] = product_data
+            LocalStorage.setStorage(storage)
+        })
 
     });
 }
 
-function paintProduct(product_type, product, color){
+function paintProduct(product_type, product, color) {
     product_preview_front.clear()
     product_preview_back.clear()
-    
-    product_preview_front.setBackground(color_tshirt[product_type].colors[color].front).then(()=>{
-        if(product.images.front){
+
+    product_preview_front.setBackground(color_tshirt[product_type].colors[color].front).then(() => {
+        if (product.images.front) {
             product_preview_front.paint(product.images.front, ['center'], 'auto')
         }
-        if(product.images.pocket){
+        if (product.images.pocket) {
             product_preview_front.paint(product.images.pocket, ["pocket"], 'auto')
         }
     })
 
-    product_preview_back.setBackground(color_tshirt[product_type].colors[color].back).then(()=>{
-        if(product.images.back){
+    product_preview_back.setBackground(color_tshirt[product_type].colors[color].back).then(() => {
+        if (product.images.back) {
             product_preview_back.paint(product.images.back, ['center'], 'auto')
         }
     })
@@ -118,10 +154,10 @@ function setProduct(product_type, product) {
     paintProduct(product_type, product, product.variants[product_type].colors[0])
 
     // set size options
-    document.querySelector('#size-select').replaceChildren()
+    document.querySelector('#product-sizes-select').replaceChildren()
     Object.entries(sizes).forEach(([index, size]) => {
 
-        document.querySelector('#size-select').insertAdjacentHTML('beforeend',
+        document.querySelector('#product-sizes-select').insertAdjacentHTML('beforeend',
             `
                 <label
                     class="group relative flex items-center justify-center rounded-lg border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 ${product.variants[product_type].sizes.includes(size) ? 'cursor-pointer bg-white text-gray-900 shadow-sm' : 'cursor-not-allowed bg-gray-50 text-gray-200'}">
@@ -129,7 +165,7 @@ function setProduct(product_type, product) {
                     <input ${product.variants[product_type].sizes.includes(size) ? '' : 'disabled'} type="radio" name="size-choice" value="${size}" class="peer sr-only"
                         aria-labelledby="size-choice-${size}-label" id="size-choice-${size}-input">
                     <span
-                        class="peer-checked:border-2 peer-checked:border-green-500 border-2 border-gray-200 pointer-events-none absolute -inset-px rounded-lg"
+                        class="peer-checked:border-2 peer-checked:border-gray-500 border-2 border-gray-200 pointer-events-none absolute -inset-px rounded-lg"
                         aria-hidden="true">${product.variants[product_type].sizes.includes(size) ?
                 ''
                 :
@@ -147,6 +183,14 @@ function setProduct(product_type, product) {
         )
 
     })
+
+    //price
+
+    let price = product.variants[document.querySelector('#product-type-select input:checked').value].base
+    Object.keys(product.images).forEach(print_place => {
+        price += product.price[print_place]
+    })
+    document.querySelector('#product-price').textContent = `₹${price}`
 
     document.querySelector(`#size-choice-${product.variants[product_type].sizes[0]}-input`).checked = true
 }
@@ -205,7 +249,7 @@ class ProductPreview {
                 }
                 const h_ratio = dw / design.width;
                 const v_ratio = dh / design.height;
-                ratio = Math.min(h_ratio, v_ratio)*0.5;
+                ratio = Math.min(h_ratio, v_ratio) * 0.5;
             }
 
             //center image
@@ -213,7 +257,7 @@ class ProductPreview {
                 x = (this.canvas.width - design.width * ratio) / 2,
                     y = (this.canvas.height - design.height * ratio) / 2
             }
-            if(x == 'pocket'){
+            if (x == 'pocket') {
                 x = 600
                 y = 300
             }
@@ -234,7 +278,7 @@ class ProductPreview {
                     }
                     const h_ratio = dw / design.width;
                     const v_ratio = dh / design.height;
-                    ratio = Math.min(h_ratio, v_ratio)*0.5;
+                    ratio = Math.min(h_ratio, v_ratio) * 0.5;
                 }
 
                 //center image
@@ -242,7 +286,7 @@ class ProductPreview {
                     x = (this.canvas.width - design.width * ratio) / 2,
                         y = (this.canvas.height - design.height * ratio) / 2
                 }
-                if(x == 'pocket'){
+                if (x == 'pocket') {
                     x = 600
                     y = 300
                 }
