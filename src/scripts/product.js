@@ -8,6 +8,7 @@ async function fetchProduct(id) {
     const response = await fetch("./products.json");
     await response.json().then((response) => {
 
+
         let storage = LocalStorage.getStorage()
 
 
@@ -98,22 +99,12 @@ async function fetchProduct(id) {
         document.querySelector('#product-buy').addEventListener('click', () => {
             const product_type = document.querySelector('#product-type-select input:checked').value
             const size = document.querySelector('#product-sizes-select input:checked').value
-            buy({
-                "user": {
-                    "name": "",
-                    "email": "",
-                    "phone": "",
-                    "address": ""
-                },
-                "products": [
-                    {
-                        "id": id,
-                        "size": size,
-                        "type": product_type,
-                        "data": product_data,
-                    }
-                ]
-            })
+            Buy.buy([{
+                "id": id,
+                "size": size,
+                "type": product_type,
+                "data": product_data,
+            }])
         })
 
         document.querySelector('#product-cart').addEventListener('click', () => {
