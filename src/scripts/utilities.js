@@ -58,13 +58,14 @@ class Buy {
 
         let invalid = 0
 
-        const name = document.querySelector('#delivery-modal #name').value.trim()
-        const email = document.querySelector('#delivery-modal #email').value.trim()
-        const phone = document.querySelector('#delivery-modal #phone').value.trim()
-        const pincode = document.querySelector('#delivery-modal #pincode').value.trim()
-        const city = document.querySelector('#delivery-modal #city').value.trim()
-        const address_1 = document.querySelector('#delivery-modal #address-line-1').value.trim()
-        const address_2 = document.querySelector('#delivery-modal #address-line-2').value.trim()
+        console.log(document.querySelector('#modal #name'))
+        const name = document.querySelector('#modal #name').value.trim()
+        const email = document.querySelector('#modal #email').value.trim()
+        const phone = document.querySelector('#modal #phone').value.trim()
+        const pincode = document.querySelector('#modal #pincode').value.trim()
+        const city = document.querySelector('#modal #city').value.trim()
+        const address_1 = document.querySelector('#modal #address-line-1').value.trim()
+        const address_2 = document.querySelector('#modal #address-line-2').value.trim()
 
         if (name == '') {
             invalid += 1
@@ -128,7 +129,7 @@ class Buy {
     }
 
     static copyDetails(data) {
-        let copy_text = "Hi, I would like I'm {name}, I wouuld like to buy the following\n{products}\nI can be contacted at {email} and {phone}. Here's the delivery address:{address}"
+        let copy_text = "Hi, I'm {name}, I wouuld like to buy the following\n{products}\nI can be contacted at {email} and {phone}. Here's the delivery address:{address}"
     
         console.log(data)
         let product_text = ""
@@ -138,11 +139,18 @@ class Buy {
             product_text += `\n`
         })
         copy_text = copy_text.replace('{products}', product_text)
+        .replace('{name}', data.details.name)
+        .replace('{email}', data.details.email)
+        .replace('{phone}', data.details.phone)
+        .replace('{address}', `${data.details['address-line-1']}\n${data.details['address-line-2'] ? data.details['address-line-2'] : ''}`)
         navigator.clipboard.writeText(copy_text);
     }
 
-    static deliveryModal(){
-        document.querySelector('#modal').innerHTML = (
+    static deliveryModal(products){
+
+        console.log('adding')
+
+        document.querySelector('#modal').innerHTML = 
                 `
                 <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
                 <div class="fixed inset-0 z-10 overflow-y-auto">
@@ -235,15 +243,27 @@ class Buy {
                     </div>
                 </div>
                 `
-        )
+        
+
+        document.querySelector('#cart-buy').addEventListener('click', ()=>{
+            console.log("checking form")
+            if(Buy.checkForm()){
+                if(products){
+                    const user = LocalStorage.getStorage()
+                    user.products = products
+                    this.copyDetails(user)
+                }
+            }
+        })
+
+
+        document.querySelector('#cancel-cart-buy').addEventListener('click', ()=>{
+            document.querySelector('#modal').replaceChildren()
+        })
     }
 
     static buy(products){
-        Buy.deliveryModal()
-        Buy.fillForm()
-
-        const user = LocalStorage.getStorage()
-        user.products = products
-        this.copyDetails(user)
+        Buy.deliveryModal(products)
+        Buy.fillForm(products)
     }
 }

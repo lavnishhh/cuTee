@@ -44,5 +44,5 @@ class ProductPreview{
 
 }
 
-const product_preview = new ProductPreview('canvas', '../assets_temp/tshirts/mockup-front.png')
+const product_preview = new ProductPreview('canvas-front', '../assets_temp/tshirts/mockup-front.png')
 product_preview.paint('/src/assets_temp/designs/back/tshirt-5-back.png', ['center'], 0.07)
