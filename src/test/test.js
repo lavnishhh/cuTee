@@ -128,7 +128,7 @@ const product_preview_back = new ProductPreview(document.getElementById('canvas-
 // product_preview_front.paint(product.images.front, ['center'], 'auto')
 function paint(product_type, color, image) {
    product_preview_front.clear().then(() => {
-      product_preview_front.setBackground(color_tshirt[product_type].colors[color].front).then(() => {
+      product_preview_front.setBackground(`/src/${color_tshirt[product_type].colors[color].front}`).then(() => {
          if (product.images.front) {
             product_preview_front.paint(product.images.front, ['center'], 'auto')
          }
@@ -139,7 +139,7 @@ function paint(product_type, color, image) {
    })
 
    product_preview_back.clear().then(() => {
-      product_preview_back.setBackground(color_tshirt[product_type].colors[color].back).then(() => {
+      product_preview_back.setBackground(`/src/${color_tshirt[product_type].colors[color].back}`).then(() => {
          if (product.images.back) {
             product_preview_back.paint(product.images.back, ['center'], 'auto')
          }
