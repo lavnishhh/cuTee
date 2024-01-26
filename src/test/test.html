@@ -6,13 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../main.css">
+    <script src="../scripts/utilities.js"></script>
 </head>
 
 <body>
     <div>
-        <div class="flex overflow-y-scroll flex-row snap-x snap-mandatory">
-            <div id="canvas-front"></div>
+        <div id="tshirt-color-change" class="flex">
+            <div value="black" class="p-1 px-3 m-3 rounded-lg border border-black" >Black</div>
+            <div value="white" class="p-1 px-3 m-3 rounded-lg border border-black" >White</div>
+            <div value="beige" class="p-1 px-3 m-3 rounded-lg border border-black" >Beige</div>
         </div>
+        <div class="flex flex-row">
+            <div class="flex flex-col w-screen">
+                <div class="w-11/12">
+                    <canvas class="w-full" width="500" height="500" id="canvas-front"></canvas>
+                </div>
+                <div class="w-full flex flex-row">
+                    <input id="design-front-upload" type="file">
+                    <div class="border border-black p-1 px-2 text-center" id="pocket-design-toggle">Pocket</div>
+                </div>
+            </div>
+            <div class="flex flex-col w-screen">
+                <div class="w-11/12">
+                    <canvas class="w-full" width="500" height="500" id="canvas-back"></canvas>
+                </div>
+                <div class="w-full flex flex-row">
+                    <input type="file" id="design-back-upload">
+                    <!-- <div class="border border-black p-1 px-2 text-center" id="pocket-design-toggle">Pocket</div> -->
+                </div>
+            </div>
+        </div>
+        
     </div>
     <script src="./test.js"></script>
 

@@ -3,16 +3,16 @@ const color_tshirt = {
         "name": "Oversized",
         "colors": {
             "white": {
-                "front": "assets_temp/tshirts/mockup-front-white.png",
-                "back": "assets_temp/tshirts/mockup-back-white.png"
+                "front": "/assets_temp/tshirts/mockup-front-white.png",
+                "back": "/assets_temp/tshirts/mockup-back-white.png"
             },
             "black": {
-                "front": "assets_temp/tshirts/mockup-front-black.png",
-                "back": "assets_temp/tshirts/mockup-back-black.png"
+                "front": "/assets_temp/tshirts/mockup-front-black.png",
+                "back": "/assets_temp/tshirts/mockup-back-black.png"
             },
             "beige": {
-                "front": "assets_temp/tshirts/mockup-front-beige.png",
-                "back": "assets_temp/tshirts/mockup-back-beige.png"
+                "front": "/assets_temp/tshirts/mockup-front-beige.png",
+                "back": "/assets_temp/tshirts/mockup-back-beige.png"
             },
         }
     },

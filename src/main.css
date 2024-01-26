@@ -1122,10 +1122,6 @@ input:checked + .toggle-bg {
   z-index: 50;
 }
 
-.col-span-2 {
-  grid-column: span 2 / span 2;
-}
-
 .col-span-3 {
   grid-column: span 3 / span 3;
 }
@@ -1152,6 +1148,10 @@ input:checked + .toggle-bg {
 
 .m-2 {
   margin: 0.5rem;
+}
+
+.m-3 {
+  margin: 0.75rem;
 }
 
 .mx-1 {
@@ -1294,6 +1294,10 @@ input:checked + .toggle-bg {
   width: 2.5rem;
 }
 
+.w-11\/12 {
+  width: 91.666667%;
+}
+
 .w-4 {
   width: 1rem;
 }
@@ -1316,6 +1320,10 @@ input:checked + .toggle-bg {
 
 .w-full {
   width: 100%;
+}
+
+.w-screen {
+  width: 100vw;
 }
 
 .max-w-2xl {
@@ -1675,6 +1683,11 @@ input:checked + .toggle-bg {
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+
 .bg-gray-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
@@ -1721,11 +1734,6 @@ input:checked + .toggle-bg {
 
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
-}
-
-.bg-gray-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-50 {
@@ -1837,10 +1845,6 @@ input:checked + .toggle-bg {
   padding-bottom: 2.5rem;
 }
 
-.pb-12 {
-  padding-bottom: 3rem;
-}
-
 .pb-4 {
   padding-bottom: 1rem;
 }
@@ -1889,10 +1893,6 @@ input:checked + .toggle-bg {
 
 .pt-5 {
   padding-top: 1.25rem;
-}
-
-.pb-3 {
-  padding-bottom: 0.75rem;
 }
 
 .text-left {
@@ -2027,10 +2027,6 @@ input:checked + .toggle-bg {
 
 .opacity-100 {
   opacity: 1;
-}
-
-.opacity-75 {
-  opacity: 0.75;
 }
 
 .shadow {

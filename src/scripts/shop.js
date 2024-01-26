@@ -55,6 +55,8 @@ function paintList(product_data_list, product_types, preview_colors) {
     ProductPreview.painters.map(()=>{return null})
     ProductPreview.painters = []
 
+    console.log(product_data_list)
+
     product_data_list.forEach(async product_data => {
 
         //product type
@@ -67,7 +69,6 @@ function paintList(product_data_list, product_types, preview_colors) {
         }
 
         //color
-        console.log(preview_colors)
         if (!product_data.variants[product_type].colors.includes(preview_colors)) {
             if(preview_colors!=null){
                 return
@@ -91,7 +92,6 @@ function paintList(product_data_list, product_types, preview_colors) {
         })
 
         //if initial color was null, set color as first available color
-        console.log(preview_colors)
         if (preview_colors == null) {
             color = preview_colors_set.values().next().value;
         }
@@ -145,6 +145,7 @@ function paintList(product_data_list, product_types, preview_colors) {
         const product_painter_front = new ProductPreview(product_html.querySelector('.image-front'))
         const product_painter_back = new ProductPreview(product_html.querySelector('.image-back'))
 
+        console.log(color_tshirt[product_type].colors[color].front)
         //paint front
         product_painter_front.setBackground(color_tshirt[product_type].colors[color].front).then(() => {
             if (product_data.images.front) {
