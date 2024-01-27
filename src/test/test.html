@@ -11,29 +11,42 @@
 
 <body>
     <div>
-        <div id="tshirt-color-change" class="flex">
-            <div value="black" class="p-1 px-3 m-3 rounded-lg border border-black" >Black</div>
-            <div value="white" class="p-1 px-3 m-3 rounded-lg border border-black" >White</div>
-            <div value="beige" class="p-1 px-3 m-3 rounded-lg border border-black" >Beige</div>
+        <div class="flex fixed bg-white w-screen">
+            <div id="tshirt-color-change" class="flex">
+                <div value="black" class="p-1 px-3 m-3 rounded-lg border border-black" >Black</div>
+                <div value="white" class="p-1 px-3 m-3 rounded-lg border border-black" >White</div>
+                <div value="beige" class="p-1 px-3 m-3 rounded-lg border border-black" >Beige</div>
+            </div>
+            <div>
+                <div id="image-share" value="beige" class="p-1 px-3 m-3 rounded-lg border bg-blue-950 text-white border-b-blue-950">Share</div>
+            </div>
         </div>
-        <div class="flex flex-row">
+        <div class="flex flex-col md:flex-row">
             <div class="flex flex-col w-screen">
                 <div class="w-11/12">
                     <canvas class="w-full" width="500" height="500" id="canvas-front"></canvas>
                 </div>
                 <div class="w-full flex flex-row">
-                    <input id="design-front-upload" type="file">
+                    <input id="design-front-upload" type="file" accept="image/png, image/jpeg">
                     <div class="border border-black p-1 px-2 text-center" id="pocket-design-toggle">Pocket</div>
-                </div>
+                </div>       
+                <div class="px-5 py-2">
+                    <label for="scale-back" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size</label>
+                    <input id="scale-back" type="range" min="0" max="100" value="100"  class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                </div>         
             </div>
             <div class="flex flex-col w-screen">
                 <div class="w-11/12">
                     <canvas class="w-full" width="500" height="500" id="canvas-back"></canvas>
                 </div>
                 <div class="w-full flex flex-row">
-                    <input type="file" id="design-back-upload">
+                    <input type="file" id="design-back-upload" accept="image/png, image/jpeg">
                     <!-- <div class="border border-black p-1 px-2 text-center" id="pocket-design-toggle">Pocket</div> -->
-                </div>
+                </div>     
+                <div class="px-5 py-2">
+                    <label for="scale-front" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Size</label>
+                    <input id="scale-front" type="range" min="0" max="100" value="100"  class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                </div>   
             </div>
         </div>
         

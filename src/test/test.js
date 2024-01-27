@@ -34,8 +34,9 @@ class ProductPreview {
       });
    }
 
-   paint(image, [x, y], ratio) {
+   paint(image, [x, y], ratio, scale) {
       return new Promise((resolve, reject) => {
+
          let design;
          if (typeof (image) == 'string') {
             design = new Image();
@@ -56,7 +57,7 @@ class ProductPreview {
                }
                const h_ratio = dw / design.width;
                const v_ratio = dh / design.height;
-               ratio = Math.min(h_ratio, v_ratio) * 0.5;
+               ratio = Math.min(h_ratio, v_ratio) * 0.5 * scale;
             }
 
             //center image
@@ -86,7 +87,7 @@ class ProductPreview {
                   }
                   const h_ratio = dw / design.width;
                   const v_ratio = dh / design.height;
-                  ratio = Math.min(h_ratio, v_ratio) * 0.5;
+                  ratio = Math.min(h_ratio, v_ratio) * 0.5 * scale;
                }
 
                //center image
@@ -122,18 +123,21 @@ const product = {
 }
 
 const product_type = 'oversized_standard'
-const color = 'black'
+let color = 'black'
 const product_preview_front = new ProductPreview(document.getElementById('canvas-front'))
 const product_preview_back = new ProductPreview(document.getElementById('canvas-back'))
+let scale_f = 1
+let scale_b = 1
+
 // product_preview_front.paint(product.images.front, ['center'], 'auto')
 function paint(product_type, color, image) {
    product_preview_front.clear().then(() => {
       product_preview_front.setBackground(`../${color_tshirt[product_type].colors[color].front}`).then(() => {
          if (product.images.front) {
-            product_preview_front.paint(product.images.front, ['center'], 'auto')
+            product_preview_front.paint(product.images.front, ['center'], 'auto', scale_b)
          }
          if (product.images.pocket) {
-            product_preview_front.paint(product.images.pocket, ["pocket"], 'auto')
+            product_preview_front.paint(product.images.pocket, ["pocket"], 'auto', scale_b)
          }
       })
    })
@@ -141,7 +145,7 @@ function paint(product_type, color, image) {
    product_preview_back.clear().then(() => {
       product_preview_back.setBackground(`..${color_tshirt[product_type].colors[color].back}`).then(() => {
          if (product.images.back) {
-            product_preview_back.paint(product.images.back, ['center'], 'auto')
+            product_preview_back.paint(product.images.back, ['center'], 'auto', scale_f)
          }
       })
    })
@@ -152,8 +156,19 @@ paint(product_type, color)
 
 document.querySelector('#tshirt-color-change').addEventListener('click', (e) => {
    if (e.target.getAttribute('value')) {
+      color = e.target.getAttribute('value')
       paint(product_type, e.target.getAttribute('value'))
    }
+})
+
+document.querySelector('#scale-front').addEventListener('input', ()=>{
+   scale_f = (document.querySelector('#scale-front').value)/100
+   paint(product_type, color)
+})
+
+document.querySelector('#scale-back').addEventListener('input', ()=>{
+   scale_b = (document.querySelector('#scale-back').value)/100
+   paint(product_type, color)
 })
 
 let is_pocket = false;
@@ -212,3 +227,42 @@ document.querySelector('#design-back-upload').addEventListener('change', () => {
       reader.readAsDataURL(imageInput.files[0]);
    }
 })
+
+document.querySelector('#image-share').addEventListener('click', ()=>{
+   stitchAndShare()
+})
+
+function stitchAndShare() {
+   // Get references to the canvas elements
+   var canvas1 = document.getElementById('canvas-front');
+   var canvas2 = document.getElementById('canvas-back');
+   
+   // Get contexts
+   var ctx1 = canvas1.getContext('2d');
+   var ctx2 = canvas2.getContext('2d');
+   
+   // Draw whatever you want on canvas1 and canvas2, for example:
+   ctx1.fillStyle = 'red';
+   ctx1.fillRect(0, 0, 100, 200);
+   
+   ctx2.fillStyle = 'blue';
+   ctx2.fillRect(0, 0, 100, 200);
+   
+   // Create a new canvas to stitch the images
+   var stitchedCanvas = document.createElement('canvas');
+   stitchedCanvas.width = canvas1.width + canvas2.width;
+   stitchedCanvas.height = Math.max(canvas1.height, canvas2.height);
+   var ctx = stitchedCanvas.getContext('2d');
+   
+   // Draw canvas1 on the stitched canvas
+   ctx.drawImage(canvas1, 0, 0);
+   
+   // Draw canvas2 next to canvas1
+   ctx.drawImage(canvas2, canvas1.width, 0);
+   
+   // Open share popup with the stitched image
+   var dataURL = stitchedCanvas.toDataURL(); // Convert canvas to data URL
+   var popup = window.open('', '_blank');
+   popup.document.write('<img src="' + dataURL + '">'); // Show image in the popup
+   // You can customize the share popup further as needed
+}
